@@ -98,21 +98,49 @@ const products = [
 ];
 
 
-const mynewProduct = products.map(function(value ) {
+function display(data)
+{
+  const mynewProduct = data.map(function(value ) {
 
 
-  return ` <article class="product">
-  <img
-    src="${value.image}"
-    class="product-img img"
-    alt=""
-  />
-  <footer>
-    <h5 class="product-name">${value.title}</h5>
-    <span class="product-price">${value.price}</span>
-  </footer>
-</article>`
+    return ` <article class="product">
+    <img
+      src="${value.image}"
+      class="product-img img"
+      alt=""
+    />
+    <footer>
+      <h5 class="product-name">${value.title}</h5>
+      <span class="product-price">${value.price}</span>
+    </footer>
+  </article>`
+  
+  })
+  
+  const mynewCompany = data.map(function(value) {
+  
+    return `<button class="company-btn">${value.company} </button>`;
+  });
+  
+  document.getElementById("companies").innerHTML = mynewCompany.join(" ");
+  
+  document.getElementById("products").innerHTML  = mynewProduct.join(" ");
 
-})
+}
 
-document.getElementById("products").innerHTML  = mynewProduct.join(" ");
+function filterProduct()
+{
+  let value1 = document.getElementById("searchTerm").value;
+
+  console.log(value1)
+  let filterProducts = products.filter(function(value){
+
+    return value.title.toLowerCase() == value1.toLowerCase() ;
+  })
+
+  console.log(filterProducts);
+
+  display(filterProducts);
+}
+
+display(products);
