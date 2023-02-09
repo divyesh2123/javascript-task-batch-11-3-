@@ -119,7 +119,7 @@ function display(data)
   
   const mynewCompany = data.map(function(value) {
   
-    return `<button class="company-btn">${value.company} </button>`;
+    return `<button class="company-btn" onclick="filterbyCompany('${value.company}')">${value.company} </button>`;
   });
   
   document.getElementById("companies").innerHTML = mynewCompany.join(" ");
@@ -142,5 +142,19 @@ function filterProduct()
 
   display(filterProducts);
 }
+
+function filterbyCompany(companyName)
+{
+  let filterPrdoucts = products.filter(function(value) {
+
+      return value.company.toLowerCase() == companyName.toLowerCase();
+
+  })
+
+
+  display(filterPrdoucts);
+
+}
+
 
 display(products);
