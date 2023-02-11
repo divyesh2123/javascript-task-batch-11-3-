@@ -16,6 +16,22 @@ const products = [
     price: 79.99,
   },
   {
+    id: 'rec4f2RIftFCb7aHh',
+    title: 'albany table',
+    company: 'marcos',
+    image:
+      'https://dl.airtable.com/.attachments/f3450755e165557344f7d6433242431e/93533098/product-1.jpeg',
+    price: 788.99,
+  },
+  {
+    id: 'rec4f2RIftFCb7aHh',
+    title: 'albany table',
+    company: 'marcos',
+    image:
+      'https://dl.airtable.com/.attachments/f3450755e165557344f7d6433242431e/93533098/product-1.jpeg',
+    price: 1279.99,
+  },
+  {
     id: 'rec8kkCmSiMkbkiko',
     title: 'accent chair',
     company: 'caressa',
@@ -111,6 +127,7 @@ function display(data)
     />
     <footer>
       <h5 class="product-name">${value.title}</h5>
+      <h5 class="product-name">${value.company}</h5>
       <span class="product-price">${value.price}</span>
     </footer>
   </article>`
@@ -133,14 +150,64 @@ function filterProduct()
   let value1 = document.getElementById("searchTerm").value;
 
   console.log(value1)
-  let filterProducts = products.filter(function(value){
+  let filterProducts1 = products.filter(function(value){
 
     return value.title.toLowerCase() == value1.toLowerCase() ;
   })
 
-  console.log(filterProducts);
+  let reverseOrder = filterProducts1.reduceRight(function(pre,val){
 
-  display(filterProducts);
+    pre.push(val);
+
+    return pre;
+
+  },[])
+
+  display(reverseOrder);
+}
+
+function sortdata(order)
+{
+  let mydata = products;
+  let returnvalue1 = 1;
+  let returnvalue2 = -1;
+
+  if(order == "dsc")
+  {
+    returnvalue1 = -1;
+    returnvalue2 =1;
+
+  }
+
+  mydata.sort(function(a,b){
+
+    
+
+    if(a.company == b.company)
+    {
+      if(a.title > b.title)
+      {
+        return -1;
+      }
+      else
+      {
+        return 1;
+      }
+
+    }
+    else if(a.company> b.company)
+    {
+          return returnvalue1;
+    }
+    else
+    {
+        return returnvalue2;
+    }
+
+  })
+
+  display(mydata);
+
 }
 
 function filterbyCompany(companyName)
