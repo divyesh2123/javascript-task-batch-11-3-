@@ -38,3 +38,26 @@ const reviews = [
   },
 ];
 // select items
+
+let index = 0;
+
+function display()
+{
+  document.getElementById("author").innerHTML = reviews[index].name;
+
+}
+
+function next()
+{
+  if(index > reviews.length)
+  {
+    index = 0;
+  }
+  else
+  {
+  index = index+1;
+  }
+  display();
+
+   
+}
