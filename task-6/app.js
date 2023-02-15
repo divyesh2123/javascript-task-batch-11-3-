@@ -5,7 +5,9 @@ const url = 'https://icanhazdadjoke.com/';
 //   'User-Agent': 'learning app',
 // }
 
+function radomdisplay()
 
+{
 fetch("https://icanhazdadjoke.com/", {
 
     headers : {
@@ -17,7 +19,10 @@ fetch("https://icanhazdadjoke.com/", {
     return value.json()
 }).then(function(v) {
 
-    console.log(v);
+    document.getElementById("result").innerHTML = v.joke;
 })
 
 
+}
+
+radomdisplay();
